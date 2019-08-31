@@ -32,26 +32,24 @@ void loop() {
   if (WiFi.status() == WL_CONNECTED) {
  
     //Status des Relais vom Server abfragen
-    sender.begin("http://192.168.178.67/state");
+    sender.begin("http://192.168.178.56/state");
     sender.GET();
     
-    //Inhalt der Webseite http://192.168.178.67/state wird in die Variable returned_data geschrieben                                                                 
+    //Inhalt der Webseite http://192.168.178.56/state wird in die Variable returned_data geschrieben                                                                 
     String returned_data = sender.getString();
 
     //Ausgabe nur zu debuggin-Zwecke im seriellen Monitor
-    Serial.println("Server-Relais status: " + returned_data);
+    Serial.println(returned_data);
 
     //Wenn Status = 1 ist, dann Relais über den Link ausschalten
     if(returned_data == "1"){
-      sender.begin("http://192.168.178.67/relay_off"); 
-      sender.GET();
-      Serial.println("Relais wurde ausgeschaltet.");   
+      sender.begin("http://192.168.178.56/off"); 
+      sender.GET();   
     }
 
     //Wenn Status = 0 ist, dann Relais über den Link anschalten
     if(returned_data == "0"){
-      sender.begin("http://192.168.178.67/relay_on");
-      Serial.println("Relais wurde angeschaltet.");  
+      sender.begin("http://192.168.178.56/on");
       sender.GET(); 
     }
 
@@ -63,7 +61,7 @@ void loop() {
     
   }  
 
-  //Nach dem Befehl 2 Sekunden warten bevor der nächste ausfegührt wird
-  delay(2000);
+  //Nach dem Befehl 5 Sekunden warten bevor der nächste ausfegührt wird
+  delay(5000);
        
 }
