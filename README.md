@@ -8,7 +8,7 @@ Server File for ESP: https://github.com/makesmartnet/esp8266-http-switch/blob/ma
 Client file: client_1.ino in this repo
 
 
-##Example 2:
+## Example 2:
 Server File: server_2.ino
 
 Client File: client_2.ino
